@@ -1,4 +1,4 @@
-import db from "@/lib/config/db"
+import  { getDb } from "@/lib/config/db"
 import { eq, sql } from "drizzle-orm"
 import { courseTable } from "@/lib/config/schema"
 import { NextResponse } from "next/server"
@@ -8,7 +8,7 @@ export async function POST(req) {
 
 
     try {
-
+        const db = getDb()
         const { name } = await req.json()
 
         if (!name) {

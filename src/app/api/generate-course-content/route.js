@@ -1,7 +1,7 @@
 
 // ---------------------------------- New Api ---------------
 
-import db from "@/lib/config/db"
+import { getDb } from "@/lib/config/db"
 import { courseTable } from "@/lib/config/schema"
 import { GoogleGenAI } from "@google/genai"
 import axios from "axios"
@@ -165,6 +165,8 @@ Course Language:
 export async function POST(req) {
     try {
         const { courseJson, courseTitle, courseId } = await req.json()
+
+        const db = getDb()
 
         if (!courseId) {
             return NextResponse.json(

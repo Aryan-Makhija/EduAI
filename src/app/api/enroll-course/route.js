@@ -1,4 +1,4 @@
-import db from "@/lib/config/db";
+import { getDb } from "@/lib/config/db";
 import usersTable, { courseTable, enrollCourseTable } from "@/lib/config/schema";
 import { currentUser } from "@clerk/nextjs/server";
 import { and, desc, eq } from "drizzle-orm";
@@ -8,6 +8,8 @@ import { NextResponse } from "next/server";
 
 
 export async function POST(req) {
+
+    const db = getDb()
     const { courseId } = await req.json();
     const user = await currentUser()
 
@@ -34,7 +36,7 @@ export async function POST(req) {
 }
 
 export async function GET(req) {
-
+    const db = getDb()
     const user = await currentUser()
 
     const { searchParams } = new URL(req.url)

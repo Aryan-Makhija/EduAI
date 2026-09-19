@@ -1,4 +1,4 @@
-import db from "@/lib/config/db"
+import { getDb } from "@/lib/config/db"
 import { courseTable } from "@/lib/config/schema"
 import { currentUser } from "@clerk/nextjs/server"
 
@@ -11,7 +11,7 @@ export async function POST(req) {
 
     const { courseId, ...formdata } = await req.json()
     const user = await currentUser()
-
+    const db = getDb()
 
 
     if (!user) {

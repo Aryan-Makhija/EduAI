@@ -1,11 +1,11 @@
-import db from "@/lib/config/db"
+import { getDb } from "@/lib/config/db"
 import { courseTable } from "@/lib/config/schema"
 import { currentUser } from "@clerk/nextjs/server"
 import { desc, eq, ne, sql } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
 export async function GET(req) {
-
+    const db = getDb()
     const { searchParams } = new URL(req.url)
     const courseId = searchParams?.get("courseId")
 

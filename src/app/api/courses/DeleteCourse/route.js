@@ -1,12 +1,13 @@
 "use server";
 
-import db from "@/lib/config/db";
+import { getDb } from "@/lib/config/db";
 import { courseTable } from "@/lib/config/schema";
 import { currentUser } from "@clerk/nextjs/server";
 import { eq, and } from "drizzle-orm";
 
 export async function deleteCourse(id) {
     try {
+        const db = getDb()
         const user = await currentUser();
 
         if (!user) {

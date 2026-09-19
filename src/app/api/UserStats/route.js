@@ -4,13 +4,14 @@ import { NextResponse } from "next/server";
 
 
 
-import db from "@/lib/config/db";
+import { getDb } from "@/lib/config/db";
 import usersTable, { courseTable, enrollCourseTable } from "@/lib/config/schema";
 
 
 export async function GET() {
   try {
     const user = await currentUser();
+     const db = getDb()
 
     if (!user) {
       return NextResponse.json(
