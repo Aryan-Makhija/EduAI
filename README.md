@@ -1,225 +1,183 @@
+EduAI – AI-Powered Online Learning Platform
+🚀 EduAI
+Instant, AI-Driven Personalized Course Generation
+EduAI is an intelligent learning platform designed to generate fully structured, personalized educational courses on demand. By providing a topic, desired chapter depth, and video preferences, EduAI generates complete chapter breakdowns, rich text content, and curated YouTube video resources within minutes.
 
+💡 Overview
+Learning new subjects often requires aggregating information across disparate sources. EduAI simplifies this process by orchestrating AI content generation and real-time video aggregation into a single, interactive learning portal.
 
+Instant Course Generation: Generates custom curricula tailored to user inputs.
 
-  📚 EduAI – AI-Powered Online Learning Platform
+Smart Media Integration: Connects chapter concepts directly with relevant video tutorials.
 
+Interactive Learning Workflows: Allows users to read material, consume media, mark chapters complete, and track progress visually.
 
-EduAI is an AI-driven online learning platform that allows users to instantly generate personalized courses based on any topic they want to learn. Users simply enter the course topic, choose the number of chapters, select whether to include YouTube videos, and click Generate—EduAI handles the rest.
+✨ Features
+🎓 AI-Generated Curricula
+Generates structured, multi-chapter content via Google Gemini.
 
-The platform automatically creates structured, chapter-wise content using AI (Google Gemini) and attaches relevant YouTube videos for each chapter. Users can track their learning progress, mark chapters as complete, and start learning within minutes.
+Tailors course depth based on chosen chapter count.
 
-🚀 Features✨ AI-Generated Courses
+Automatically synthesizes lesson summaries and key learning points.
 
-Enter a topic of your choice.
+🎥 Automated Video Curation
+Leverages the YouTube Data API to source relevant, high-quality video content for each chapter.
 
-Specify the number of chapters.
+Embeds contextual video support directly into the lesson viewer.
 
-Choose whether to include related YouTube videos.
+📈 Progress Tracking & Dashboard
+Real-time progress visualizer tracking completed chapters.
 
-Click Generate and let AI create:
+Persistent user state across sessions.
 
-Chapter-wise structured content
+Interactive lesson completion toggles.
 
-Automatically attached and relevant YouTube videos
+🔐 Secure Authentication & User Management
+User authentication powered by Clerk (Email/Password & OAuth).
 
-A full learning experience in minutes
+Protected routes, server-side authorization checks, and session management.
 
-🎥 Integrated YouTube Video Content
-
-Smart extraction of relevant videos via YouTube API
-
-Each chapter includes a curated video to support learning
-
-📈 Progress Tracking
-
-Track your overall course completion
-
-Mark chapters as complete
-
-Visual progress bar for clean and intuitive UX
-
-👤 Authentication & User Management
-
-Secure signup/login using Clerk
-
-Profile management
-
-Protected routes for courses and dashboards
-
-⚡ Lightning-Fast Experience
-
-Built with Next.js 16 for both frontend and backend APIs
-
-Deployed on Vercel for optimal speed and reliability
-
-🧠 Core AI Technology
-
-EduAI uses:
-
-Google Gemini – for generating high-quality course content
-
-YouTube Data API – for attaching relevant videos to each chapter
+User profile customization and saved course history.
 
 🛠️ Tech Stack
-Frontend & Backend
+Category	Technology
+Framework	Next.js 16 (App Router, Server Actions, Server Components)
+Language	TypeScript
+Styling	Tailwind CSS, Shadcn UI
+Authentication	Clerk Auth
+Database	Neon PostgreSQL
+ORM	Drizzle ORM
+AI Models	Google Gemini API (gemini-2.5-flash / Gemini API)
+External APIs	YouTube Data API v3
+Deployment	Vercel
+📂 Architecture & Directory Structure
+Plaintext
+eduai/
+├── app/
+│   ├── (auth)/             # Authentication routes (Clerk)
+│   ├── dashboard/          # User dashboard and course overview
+│   ├── create-course/      # Course generation flow and forms
+│   ├── course/[courseId]/  # Course details and chapter viewer
+│   └── api/                # Internal API route handlers
+├── components/             # Reusable UI & Shadcn components
+├── db/                     # Drizzle ORM schema & connection setup
+│   ├── schema.ts           # PostgreSQL tables & relationships
+│   └── index.ts            # Neon database client configuration
+├── lib/                    # Shared utilities, Gemini & YouTube API helpers
+├── public/                 # Static assets and icons
+├── drizzle.config.ts       # Drizzle migrations configuration
+└── package.json
+⚙️ Getting Started
+Follow these instructions to set up and run EduAI locally.
 
-Next.js 16 (App Router)
+Prerequisites
+Ensure you have the following installed on your machine:
 
-Authentication
+Node.js: v18.x or later
 
-Clerk – login, signup, user profile, session management
+npm, pnpm, or yarn
 
-Database
+A Neon PostgreSQL database instance
 
-Neon Database – scalable Postgres database
+Accounts/API keys for Clerk, Google Gemini AI, and Google Cloud (YouTube Data API)
 
-Drizzle ORM – type-safe queries, schema migration
+Installation
+Clone the Repository
 
-Styling
+Bash
+git clone https://github.com/your-username/eduai.git
+cd eduai
+Install Dependencies
 
-Tailwind CSS – responsive and modern UI
+Bash
+npm install
+Configure Environment Variables
+Create a .env.local file in the root directory and add the following keys:
 
-ShadCN UI – accessible and beautiful pre-built components
+Code snippet
+# Next.js Application
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 
-AI & External Services
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-Google Gemini AI – course generation
+# Database (Neon Postgres)
+DATABASE_URL=postgresql://user:password@ep-example-123456.us-east-2.aws.neon.tech/neondb?sslmode=require
 
-YouTube API – fetching related videos
+# AI & External APIs
+GEMINI_API_KEY=your_google_gemini_api_key
+YOUTUBE_API_KEY=your_youtube_data_api_key
+Run Database Migrations
+Push your Drizzle schema to your Neon Database:
 
-Deployment
+Bash
+npx drizzle-kit push
+Start the Development Server
 
-Vercel – edge-optimized full-stack hosting
+Bash
+npm run dev
+Open http://localhost:3000 in your browser to view the application.
 
 📌 How It Works
+Code snippet
+sequenceDiagram
+    autonumber
+    actor User
+    participant NextJS as Next.js App Router
+    participant Gemini as Google Gemini AI
+    participant YT as YouTube API
+    participant DB as Neon Database (Drizzle)
 
-User signs in via Clerk
+    User->>NextJS: Submits topic, chapter count, & video preference
+    NextJS->>Gemini: Requests structured JSON outline & chapter text
+    Gemini-->>NextJS: Returns generated JSON course payload
+    alt Video inclusion selected
+        NextJS->>YT: Queries related videos per chapter
+        YT-->>NextJS: Returns video metadata & IDs
+    end
+    NextJS->>DB: Stores course, chapters, and video links
+    DB-->>NextJS: Confirms record creation
+    NextJS-->>User: Redirects to interactive course dashboard
+Authenticate: Log in securely via Clerk using social provider or credentials.
 
-Navigate to Generate Course page
+Configure Prompt: Access the creation interface, specify topic parameters, target chapter count, and toggle media integration.
 
-Fill out the form:
+Generation Workflow:
 
-Course topic
+Gemini generates structured JSON containing chapter headers, explanations, and core concepts.
 
-Number of chapters
+If enabled, the server queries the YouTube Data API for relevant support videos per topic.
 
-Include YouTube videos (Yes/No)
+Course payloads are saved to Neon via Drizzle ORM.
 
-Click Generate
+Interactive Dashboard: Users consume lesson text, stream videos, and mark chapters complete to update visual progress bars.
 
-AI generates:
+🔮 Roadmap & Future Enhancements
+[ ] Interactive Quizzes: Auto-generate AI comprehension checks at the end of each chapter.
 
-Chapter titles
+[ ] Flashcards: Export key concepts into spaced-repetition flashcard sets.
 
-Chapter explanations
+[ ] Collaborative Learning: Course sharing, public registries, and user forks.
 
-YouTube video suggestions
+[ ] Dark Mode Support: Native theme switching using next-themes.
 
-User can:
-
-Read all chapters
-
-Watch related videos
-
-Mark chapters as complete
-
-Track progress with a progress bar
-
-
-🔐 Authentication (Clerk)
-
-EduAI uses Clerk for:
-
-Authentication (Email/Password, OAuth)
-
-User profile management
-
-Protected server components
-
-Handling session tokens in Next.js
-
-🗄️ Database (Neon + Drizzle ORM)
-
-Courses and chapters are stored in Neon PostgreSQL
-
-Drizzle ensures:
-
-Type-safe queries
-
-Easy migrations
-
-Clean and maintainable database schema
-
-🎨 UI / UX
-
-Clean and minimalist UI with Tailwind CSS
-
-Beautiful UI components from ShadCN
-
-Fully responsive design across all devices
-
-🚀 Deployment
-
-EduAI is deployed on Vercel, offering:
-
-Fast CI/CD
-
-Edge network performance
-
-Automatic routing
-
-Zero-configuration deployment
-
-📌 Future Enhancements (Optional Section)
-
-User-created flashcards
-
-AI-powered quizzes per chapter
-
-Course sharing and collaboration
-
-Dark mode
-
-Mobile app version
+[ ] Export Options: Export generated courses as PDF or Markdown files.
 
 🤝 Contributing
+Contributions are welcome! If you find a bug or have a feature request, feel free to open an issue or submit a pull request.
 
-Contributions, issues, and feature requests are welcome!
+Fork the repository
 
+Create your feature branch (git checkout -b feature/AmazingFeature)
 
-<!-- This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Commit your changes (git commit -m 'Add some AmazingFeature')
 
-## Getting Started
+Push to the branch (git push origin feature/AmazingFeature)
 
-First, run the development server:
+Open a Pull Request
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details. -->
+📜 License
+Distributed under the MIT License. See LICENSE for more information.
