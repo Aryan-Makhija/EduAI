@@ -1,57 +1,74 @@
-EduAI – AI-Powered Online Learning Platform
-🚀 EduAI
-Instant, AI-Driven Personalized Course Generation
-EduAI is an intelligent learning platform designed to generate fully structured, personalized educational courses on demand. By providing a topic, desired chapter depth, and video preferences, EduAI generates complete chapter breakdowns, rich text content, and curated YouTube video resources within minutes.
+# EduAI – AI-Powered Online Learning Platform
 
-💡 Overview
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue?style=flat&logo=react)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![Clerk](https://img.shields.io/badge/Clerk-Auth-6C47FF?style=flat&logo=clerk)](https://clerk.com/)
+[![Neon](https://img.shields.io/badge/Neon-PostgreSQL-00E599?style=flat&logo=postgresql)](https://neon.tech/)
+[![Drizzle ORM](https://img.shields.io/badge/Drizzle-ORM-C5F74F?style=flat&logo=drizzle)](https://orm.drizzle.team/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=flat&logo=vercel)](https://vercel.com/)
+
+<br />
+
+# 🚀 EduAI
+### Instant, AI-Driven Personalized Course Generation
+
+**EduAI** is an intelligent learning platform designed to generate fully structured, personalized educational courses on demand. By providing a topic, desired chapter depth, and video preferences, EduAI generates complete chapter breakdowns, rich text content, and curated YouTube video resources within minutes.
+
+---
+
+# 💡 Overview
+
 Learning new subjects often requires aggregating information across disparate sources. EduAI simplifies this process by orchestrating AI content generation and real-time video aggregation into a single, interactive learning portal.
 
-Instant Course Generation: Generates custom curricula tailored to user inputs.
+* **Instant Course Generation**: Generates custom curricula tailored to user inputs.
+* **Smart Media Integration**: Connects chapter concepts directly with relevant video tutorials.
+* **Interactive Learning Workflows**: Allows users to read material, consume media, mark chapters complete, and track progress visually.
 
-Smart Media Integration: Connects chapter concepts directly with relevant video tutorials.
+---
 
-Interactive Learning Workflows: Allows users to read material, consume media, mark chapters complete, and track progress visually.
+# ✨ Features
 
-✨ Features
-🎓 AI-Generated Curricula
-Generates structured, multi-chapter content via Google Gemini.
+### 🎓 AI-Generated Curricula
+* Generates structured, multi-chapter content via Google Gemini.
+* Tailors course depth based on chosen chapter count.
+* Automatically synthesizes lesson summaries and key learning points.
 
-Tailors course depth based on chosen chapter count.
+### 🎥 Automated Video Curation
+* Leverages the YouTube Data API to source relevant, high-quality video content for each chapter.
+* Embeds contextual video support directly into the lesson viewer.
 
-Automatically synthesizes lesson summaries and key learning points.
+### 📈 Progress Tracking & Dashboard
+* Real-time progress visualizer tracking completed chapters.
+* Persistent user state across sessions.
+* Interactive lesson completion toggles.
 
-🎥 Automated Video Curation
-Leverages the YouTube Data API to source relevant, high-quality video content for each chapter.
+### 🔐 Secure Authentication & User Management
+* User authentication powered by Clerk (Email/Password & OAuth).
+* Protected routes, server-side authorization checks, and session management.
+* User profile customization and saved course history.
 
-Embeds contextual video support directly into the lesson viewer.
+---
 
-📈 Progress Tracking & Dashboard
-Real-time progress visualizer tracking completed chapters.
+# 🛠️ Tech Stack
 
-Persistent user state across sessions.
+| Category | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 16 (App Router, Server Actions, Server Components) |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS, Shadcn UI |
+| **Authentication** | Clerk Auth |
+| **Database** | Neon PostgreSQL |
+| **ORM** | Drizzle ORM |
+| **AI Models** | Google Gemini API (`gemini-2.5-flash` / Gemini API) |
+| **External APIs** | YouTube Data API v3 |
+| **Deployment** | Vercel |
 
-Interactive lesson completion toggles.
+---
 
-🔐 Secure Authentication & User Management
-User authentication powered by Clerk (Email/Password & OAuth).
+# 📂 Architecture & Directory Structure
 
-Protected routes, server-side authorization checks, and session management.
-
-User profile customization and saved course history.
-
-🛠️ Tech Stack
-Category	Technology
-Framework	Next.js 16 (App Router, Server Actions, Server Components)
-Language	TypeScript
-Styling	Tailwind CSS, Shadcn UI
-Authentication	Clerk Auth
-Database	Neon PostgreSQL
-ORM	Drizzle ORM
-AI Models	Google Gemini API (gemini-2.5-flash / Gemini API)
-External APIs	YouTube Data API v3
-Deployment	Vercel
-📂 Architecture & Directory Structure
-Plaintext
+```text
 eduai/
 ├── app/
 │   ├── (auth)/             # Authentication routes (Clerk)
@@ -67,6 +84,7 @@ eduai/
 ├── public/                 # Static assets and icons
 ├── drizzle.config.ts       # Drizzle migrations configuration
 └── package.json
+
 ⚙️ Getting Started
 Follow these instructions to set up and run EduAI locally.
 
@@ -85,7 +103,7 @@ Installation
 Clone the Repository
 
 Bash
-git clone https://github.com/your-username/eduai.git
+git clone [https://github.com/your-username/eduai.git](https://github.com/your-username/eduai.git)
 cd eduai
 Install Dependencies
 
