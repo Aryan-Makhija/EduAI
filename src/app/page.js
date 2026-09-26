@@ -154,50 +154,50 @@ export default function Home() {
 
       {/* ================= HEADER ================= */}
       <header className="fixed top-0 left-0 w-full bg-[#fcfbf7]/90 backdrop-blur-md z-50 border-b border-amber-900/10 transition-all">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        {/* Added 'relative' to keep absolute center navigation anchored to this container */}
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5 relative">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-600 to-amber-700 flex items-center justify-center text-white shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
-              <GraduationCap className="w-6 h-6" />
+          {/* Logo (Left side) */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 group z-10">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-600 to-amber-700 flex items-center justify-center text-white shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
+              <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tight text-slate-900 leading-none">
+              <span className="text-lg sm:text-xl font-black tracking-tight text-slate-900 leading-none">
                 Edu<span className="text-amber-600">AI</span>
               </span>
-
             </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+          {/* Desktop Nav (Perfectly centered absolutely + no text wrapping) */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-slate-600 whitespace-nowrap absolute left-1/2 -translate-x-1/2">
             <a href="#features" className="hover:text-amber-600 transition-colors">Features</a>
             <a href="#how" className="hover:text-amber-600 transition-colors">How It Works</a>
             <a href="#courses" className="hover:text-amber-600 transition-colors">Explore Tracks</a>
             <a href="#faq" className="hover:text-amber-600 transition-colors">FAQ</a>
           </nav>
 
-          {/* Auth Buttons */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Auth Buttons (Right side) */}
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4 shrink-0 z-10">
             <SignedOut>
               <SignInButton mode="modal">
-                <button className="text-sm font-medium text-slate-700 hover:text-slate-900 px-4 py-2 transition">
+                <button className="text-sm font-medium text-slate-700 hover:text-slate-900 px-3 xl:px-4 py-2 whitespace-nowrap transition">
                   Sign In
                 </button>
               </SignInButton>
 
               <SignUpButton mode="modal">
-                <button className="bg-amber-500 hover:bg-amber-600 text-slate-950 px-5 py-2.5 rounded-lg font-medium text-sm transition shadow-sm hover:shadow-amber-500/20">
+                <button className="bg-amber-500 hover:bg-amber-600 text-slate-950 px-4 xl:px-5 py-2.5 rounded-lg font-medium text-sm whitespace-nowrap transition shadow-sm hover:shadow-amber-500/20">
                   Get Started Free
                 </button>
               </SignUpButton>
             </SignedOut>
 
             <SignedIn>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 xl:gap-4">
                 <Link
                   href="/workspace"
-                  className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-medium text-sm px-4 py-2 rounded-lg transition shadow-sm"
+                  className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-medium text-sm px-4 py-2 rounded-lg whitespace-nowrap transition shadow-sm"
                 >
                   Go to Workspace
                 </Link>
@@ -206,10 +206,11 @@ export default function Home() {
             </SignedIn>
           </div>
 
-          {/* Mobile Menu */}
-          <div className="md:hidden">
+          {/* Mobile/Tablet Menu Trigger */}
+          <div className="lg:hidden flex items-center z-10">
             <MobileMenu />
           </div>
+
         </div>
       </header>
 
@@ -342,7 +343,7 @@ export default function Home() {
           {/* Compact Top Status Bar */}
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
             <div className="flex items-center gap-2">
-              
+
               <span className="text-xs font-bold text-slate-900">
                 Course Generator <span className="text-amber-600">Snapshot</span>
               </span>
@@ -358,7 +359,7 @@ export default function Home() {
               Topic / Title
             </span>
             <p className="text-xs sm:text-sm font-bold text-slate-800 truncate">
-             Java Programming language Course
+              Java Programming language Course
             </p>
           </div>
 
@@ -752,7 +753,7 @@ export default function Home() {
       {/* ================= FOOTER ================= */}
       <section id="contact">
 
-      <Footer></Footer>
+        <Footer></Footer>
       </section>
     </div>
   );
